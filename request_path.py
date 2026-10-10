@@ -1,17 +1,28 @@
-import json
 from pathlib import Path
+import platform
+import json
+import os
 
-def request_path(output_filename="paths.json"):
-    rutas_directorios = {}
+sysop = platform.system()
 
-    for directory in Path.home().glob("*"):
-        if directory.is_dir() and directory.name.startswith("."):
+if sysop == "Linux":
+    linux_paths = {}
+    for dir in Path.home().glob("*"):
+        if dir.name.startswith("."):
             continue
-        elif directory.is_dir():
-            rutas_directorios[directory.name] =  str(directory)
+        else:
+            linux_paths[dir.name] = str(dir)
 
-    with open("paths.json", "w", encoding="utf-8") as file:
-        json.dump(rutas_directorios, file, indent=4, ensure_ascii=False)
+    with open(f'paths_{sysop}.json', 'w') as file:
+         json.dump(linux_paths,file,indent=2)
 
-if __name__ == "__main__":
-    request_path()
+
+elif sysop == "Windows":
+    general_windows_directories = ['Desktop','Documents','Downloads','Music','Pictures','Videos']
+    windows_path = {}
+    for dir in Path.home().glob("*"):
+        if dir.name in general_windows_directories:
+                windows_path[dir.name] = str(dir)
+
+    with open(f'paths_windows.json', 'w') as file:
+        json.dump(windows_path,file, indent=2)
