@@ -15,7 +15,7 @@ def paths_generate():
                 linux_paths[dir.name] = str(dir)
 
         with open(f'paths_{sysop}.json', 'w') as file:
-            json.dump(linux_paths,file,indent=2)
+            json.dump(linux_paths,file,indent=2,ensure_ascii=False)
 
 
     elif sysop == "Windows":
@@ -26,7 +26,7 @@ def paths_generate():
                     windows_path[dir.name] = str(dir)
 
         with open(f'paths_windows.json', 'w') as file:
-            json.dump(windows_path,file, indent=2)
+            json.dump(windows_path,file, indent=2,ensure_ascii=False)
 
-if __name__ == "__init__":
+if __name__ == "__main__":
     paths_generate()
