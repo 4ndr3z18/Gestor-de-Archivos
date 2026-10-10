@@ -16,7 +16,6 @@ if sysop == "Linux":
     with open(f'paths_{sysop}.json', 'w') as file:
          json.dump(linux_paths,file,indent=2)
 
-
 elif sysop == "Windows":
     general_windows_directories = ['Desktop','Documents','Downloads','Music','Pictures','Videos']
     windows_path = {}
