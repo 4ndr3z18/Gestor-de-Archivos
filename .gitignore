@@ -1,5 +1,4 @@
 __pycache__/
 *.pyc
+*.json
 .gestor_venv
-paths.json
-pasos.txt
